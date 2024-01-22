@@ -1,4 +1,9 @@
-const CarTool = () => {
+import PropTypes from 'prop-types';
+
+const CarTool = (props) => {
+    
+    
+    
   return (
     <header>
       <h1>Car Tool</h1>
@@ -14,26 +19,36 @@ const CarTool = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Toyota</td>
-            <td>Prius</td>
-            <td>1992</td>
-            <td>Red</td>
-            <td>18,000</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jeep</td>
-            <td>Chereek</td>
-            <td>1992</td>
-            <td>Blue</td>
-            <td>11,000</td>
-          </tr>
+          {props.cars.map(car => <tr key={car.id}>
+          <td>{car.make}</td> 
+          <td>{car.model}</td> 
+          <td>{car.year}</td> 
+          <td>{car.color}</td>  
+          <td>{car.price} </td>
+        </tr>)}
         </tbody>
       </table>
+
     </header>
   );
 };
+CarTool.defaultProps = {
+    // if the component is called and the array of colors
+    // is not provided, then the default value will be used
+    cars: [],
+  };
+  
+CarTool.propTypes = {
+    // if the component is called and the array of colors
+    // is provided, then the array of colors must be an array
+    // of objects with an id property and a name property
+    cars: PropTypes.arrayOf(PropTypes.shape({
+      make: PropTypes.string.isRequired,
+      model: PropTypes.string.isRequired,
+      year: PropTypes.number.isRequired,
+      color: PropTypes.string.isRequired,
+      price: PropTypes.number.isRequired,
+    })).isRequired,
+  };
 
 export default CarTool;
