@@ -1,35 +1,18 @@
 import PropTypes from 'prop-types';
+import ToolHeader from './ToolHeader';
+import CarTable from './CarTable';
 
 const CarTool = (props) => {
-    
+    const carToolHeaderText = "Car Tool Header"
     
     
   return (
-    <header>
-      <h1>Car Tool</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Make</th>
-            <th>Model</th>
-            <th>Year</th>
-            <th>Color</th>
-            <th>Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.cars.map(car => <tr key={car.id}>
-          <td>{car.make}</td> 
-          <td>{car.model}</td> 
-          <td>{car.year}</td> 
-          <td>{car.color}</td>  
-          <td>{car.price} </td>
-        </tr>)}
-        </tbody>
-      </table>
-
-    </header>
+    <>
+   <ToolHeader headerText={carToolHeaderText}/>
+   <CarTable cars={props.cars}/>
+      
+      </>
+   
   );
 };
 CarTool.defaultProps = {

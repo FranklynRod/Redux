@@ -1,25 +1,25 @@
+
 import PropTypes from 'prop-types';
-import ToolHeader from './ToolHeader';
-import ColorList from './ColorList';
 
-const ColorTool = (props) => {
-  
-    const colorToolHeaderText = "Color Header"
 
+
+const ColorList = (props) => {
   return (
-    <>
-     <ToolHeader headerText={colorToolHeaderText}/>
-     <ColorList colors={props.colors}/>
-    </>
-  );
-}
-ColorTool.defaultProps = {
+<ul>
+        {props.colors.length === 0 && <li>No colors.</li>}
+        {!props.colors.length && <li>No colors.</li>}
+        {props.colors.map(color => <li key={color.id}>
+          {color.name} - {color.hexcode}
+        </li>)}
+      </ul>
+)}
+ColorList.defaultProps = {
   // if the component is called and the array of colors
   // is not provided, then the default value will be used
   colors: [],
 };
 
-ColorTool.propTypes = {
+ColorList.propTypes = {
   // if the component is called and the array of colors
   // is provided, then the array of colors must be an array
   // of objects with an id property and a name property
@@ -29,4 +29,5 @@ ColorTool.propTypes = {
     hexcode: PropTypes.string.isRequired,
   })).isRequired,
 };
-export default ColorTool
+
+export default ColorList
