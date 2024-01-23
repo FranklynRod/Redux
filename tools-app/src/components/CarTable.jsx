@@ -1,5 +1,6 @@
 
 import PropTypes from 'prop-types';
+import CarViewRow from './CarViewRow';
 
 
 const CarTable = (props) => {
@@ -17,13 +18,9 @@ const CarTable = (props) => {
           </tr>
         </thead>
         <tbody>
-          {props.cars.map(car => <tr key={car.id}>
-          <td>{car.make}</td> 
-          <td>{car.model}</td> 
-          <td>{car.year}</td> 
-          <td>{car.color}</td>  
-          <td>{car.price} </td>
-        </tr>)}
+        {props.cars.map(car =>
+          <CarViewRow key={car.id} car={car} />)}
+          
         </tbody>
       </table>
     
